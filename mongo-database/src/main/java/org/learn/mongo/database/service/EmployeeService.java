@@ -15,5 +15,13 @@ public class EmployeeService implements EmployeeRepository{
 	public void saveEmployee(Employee employee) {
 		mongoTemplate.save(employee, "employee");
 	}
+
+	public MongoTemplate getMongoTemplate() {
+		return mongoTemplate;
+	}
+
+	public void setMongoTemplate(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
+	}
 	
 }
