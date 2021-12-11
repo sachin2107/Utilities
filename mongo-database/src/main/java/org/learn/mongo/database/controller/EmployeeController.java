@@ -111,4 +111,21 @@ public class EmployeeController {
 		responseEntity = new ResponseEntity<FinalResponse>(finalResponse, headersMap, HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	@GetMapping("/employee/exc/{id}")
+	public ResponseEntity<String> getEmployeeExc(@PathVariable Long id){
+		MultiValueMap<String, String> headersMap = new HttpHeaders();
+		headersMap.put("keys", Arrays.asList("value"));
+
+		ResponseEntity<String> responseEntity = null;
+		HttpEntity<String> httpEntity = new HttpEntity<String>("emp found", headersMap);
+		try {
+			int a = 10/0;
+		}catch(Exception e) {
+			System.out.println("10/0 exception occured...");
+			return new ResponseEntity<String>("10/0",headersMap,HttpStatus.EXPECTATION_FAILED);
+		}
+		responseEntity = new ResponseEntity<String>("Emp found", headersMap, HttpStatus.OK);
+		return responseEntity;
+	}
 }
