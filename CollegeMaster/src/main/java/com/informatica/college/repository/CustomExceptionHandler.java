@@ -1,6 +1,5 @@
 package com.informatica.college.repository;
 
-import org.bson.json.JsonObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,7 +39,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	public final ResponseEntity<String> handleAllExceptions(Exception e, WebRequest request) {
 		ExceptionResponse excResponse = new ExceptionResponse();
 		excResponse.setType("Failure");
-		excResponse.setMessage("Exception");
+		excResponse.setMessage("Exception"+e.getMessage());
 		excResponse.setDuplicated("false");
 		
 		ObjectMapper mapper = new ObjectMapper();

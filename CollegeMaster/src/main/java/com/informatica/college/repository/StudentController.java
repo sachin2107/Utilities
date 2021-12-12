@@ -24,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.informatica.college.constants.AppConstants;
+import com.informatica.college.feignproxyinterface.EmployeeMongoDbProxy;
 import com.informatica.college.model.FinalResponse;
 import com.informatica.college.model.Student;
 
@@ -36,6 +37,9 @@ public class StudentController {
 	@Autowired
 	private StudentRepository studRepo;
 
+	@Autowired
+	private EmployeeMongoDbProxy proxy;
+	
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
@@ -99,8 +103,10 @@ public class StudentController {
 		if (student.isPresent()) {
 			httpEntity = new HttpEntity<String>(student.get().getFirstName(), headersMap);
 			try {
-				responseEntity = restTemplate().exchange("http://localhost:8088/mongocrud/employee/exc1/" + id,
-						HttpMethod.GET, httpEntity, String.class);
+//				responseEntity = restTemplate().exchange("http://localhost:8088/mongocrud/employee/exc1/" + id,
+//						HttpMethod.GET, httpEntity, String.class);
+				//instead of above we can use feign client to call service
+				responseEntity = proxy.getEmployeeExc(id);
 				if (null != responseEntity) {
 					String empHttpCode = String.valueOf(responseEntity.getStatusCodeValue());
 					String empRespBody = responseEntity.getBody().toString();

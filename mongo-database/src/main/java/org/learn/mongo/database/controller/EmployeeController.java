@@ -119,13 +119,15 @@ public class EmployeeController {
 
 		ResponseEntity<String> responseEntity = null;
 		HttpEntity<String> httpEntity = new HttpEntity<String>("emp found", headersMap);
-		try {
-			int a = 10/0;
-		}catch(Exception e) {
-			System.out.println("10/0 exception occured...");
-			return new ResponseEntity<String>("10/0",headersMap,HttpStatus.EXPECTATION_FAILED);
-		}
-		responseEntity = new ResponseEntity<String>("Emp found", headersMap, HttpStatus.OK);
+		
+		List<Employee> employees = employeeService.getMongoTemplate().findAll(Employee.class);
+		System.out.println("employees fetched="+employees.toString());
+		/*
+		 * try { int a = 10/0; }catch(Exception e) {
+		 * System.out.println("10/0 exception occured..."); return new
+		 * ResponseEntity<String>("10/0",headersMap,HttpStatus.EXPECTATION_FAILED); }
+		 */
+		responseEntity = new ResponseEntity<String>("Emp found=", headersMap, HttpStatus.OK);
 		return responseEntity;
 	}
 }
