@@ -1,0 +1,15 @@
+server:  port: 8087
+  
+serverpop:  country-capitals:    {India:'Delhi',America:'Newyork'}  to: sachin  servers1:  - ONE  - TWO  - THREE  port: 9999  hostname: host  from: FROM23      
+my:
+  list:
+    values:abc,def,ghi,jkl
+  map:
+    values:{India:'Delhi',America:'Newyork'}
+  
+    
+javadevjournal:
+  init:
+    keys:
+      new:
+        delimiter:1,2,3,4
