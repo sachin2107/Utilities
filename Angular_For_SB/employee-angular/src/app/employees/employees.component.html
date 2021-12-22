@@ -1,0 +1,23 @@
+<p>employees works!</p>
+<div class="col-md-8">
+    <table class="table table-striped">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Age</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{employee.id}}</td>
+                <td><input type="text" [(ngModel)]="employee.name" name="name" id="name"></td>
+                <td><input type="text" [(ngModel)]="employee.designation" name="designation" id="designation"></td>
+                <td>{{employee.age}}</td>
+
+                <td><button class="btn btn-danger" (click)="onDelete(employee.id)">Delete</button></td>
+                <td><button class="btn btn-danger" (click)="onUpdate(employee, employee.id)">Update</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

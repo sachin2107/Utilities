@@ -13,6 +13,7 @@ export class StudentListComponent implements OnInit {
 
   students: Student[] ;
 
+  student: Student;
   constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
@@ -40,4 +41,12 @@ export class StudentListComponent implements OnInit {
           this.students = this.students.filter(u => u.id!=id);
         })
   };
+
+  viewStudentInfo(id: number): any{
+    console.log("in viewStudentInfo method...");
+    return this.studentService.getStudent(id)
+          .subscribe(data => {
+            this.student = data;
+          });
+  }
 }

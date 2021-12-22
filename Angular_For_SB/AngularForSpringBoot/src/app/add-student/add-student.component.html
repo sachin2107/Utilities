@@ -1,1 +1,22 @@
 <p>add-student works!</p>
+<div class="col-md-6">
+<h2 class="text-center">Add Student</h2>
+<form>
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="name" [(ngModel)]="student.firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="name" [(ngModel)]="student.lastName" placeholder="Last Name" name="lastName" class="form-control" id="lastName">
+  </div>
+
+  <div class="form-group">
+    <label for="id">Student Id</label>
+    <input [(ngModel)]="student.id" placeholder="Student Id" name="id" class="form-control" id="id">
+  </div>
+
+  <input value="Create" class="btn btn-success" (click)="createStudent()">
+</form>
+</div>

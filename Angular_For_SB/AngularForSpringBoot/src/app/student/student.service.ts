@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, Observable } from 'rxjs';
 import { Student } from './student';
@@ -13,14 +13,19 @@ export class StudentService {
 
   private baseUrl = 'http://localhost:8080/api/'; 
   
-
+  private httpOptions = {
+    headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    })
+};
 
   getStudentList(): Observable<any> {  
-    return this.httpClient.get<Student[]>(`${this.baseUrl}`+'students');  
+    return this.httpClient.get<Student[]>(`${this.baseUrl}`+'students',this.httpOptions);  
   }  
   
   createStudent(student: object): Observable<object> {  
-    return this.httpClient.post(`${this.baseUrl}`+'save-student', student);  
+    return this.httpClient.post<Student>(`${this.baseUrl}student`, student);  
   }  
   
   deleteStudent(firstName: String): Observable<any> {  
@@ -31,8 +36,8 @@ export class StudentService {
     return this.httpClient.delete(`${this.baseUrl}deletestudent/${id}`);
   }
   
-  getStudent(id: number): Observable<Object> {  
-    return this.httpClient.get(`${this.baseUrl}/student/${id}`);  
+  getStudent(id: number): Observable<any> {  
+    return this.httpClient.get(`${this.baseUrl}student/${id}`);  
   }  
   
   updateStudent(id: number, value: any): Observable<Object> {  

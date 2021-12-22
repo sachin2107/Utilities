@@ -12,11 +12,18 @@ export class AddStudentComponent implements OnInit {
 
   constructor(private studentService: StudentService) { }
 
-  student : Student =new Student();  
+  student : Student = new Student(10,"","");  
   submitted = false;  
 
   ngOnInit(): void {
     this.submitted = false; 
   }
 
+  createStudent(): void {
+    console.log("inside createStudent...");
+    this.studentService.createStudent(this.student)
+        .subscribe(data => {
+          alert("student created successfully...");
+        })
+  }
 }

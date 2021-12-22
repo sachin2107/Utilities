@@ -1,0 +1,11 @@
+<p>student-info works!</p>
+<div class="row">
+    <div class="col-md-6">
+        <p>Student Id:</p>
+        <input type="name" [(ngModel)]="student.id" name="id" id="id">
+        <button class="btn btn-info" (click)="viewStudentInfo(student.id)"> Find Student By Id</button>
+        <p>Student id: {{student.id}}</p>
+        <p>First name: {{student.firstName}}</p>
+        <p>Last name: {{student.lastName}}</p>
+    </div>
+</div>

@@ -13,6 +13,7 @@
                 <td>{{student.lastName}}</td>
                 <td><button class="btn btn-danger" (click)="deleteStudent(student.firstName)"> Delete Student</button></td>
                 <td><button class="btn btn-danger" (click)="deleteStudentById(student.id)"> Delete Student By Id</button></td>
+                <td><button class="btn btn-info" (click)="viewStudentInfo(student.id)" routerLink="student"> Find Student By Id</button></td>
             </tr>
         </tbody>
     </table>

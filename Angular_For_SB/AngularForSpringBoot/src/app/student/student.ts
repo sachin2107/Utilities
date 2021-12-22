@@ -3,9 +3,10 @@ export class Student {
     firstName: String;
     lastName: String;
 
-    constructor() {
-        this.id = 0;
-        this.firstName = '';
-        this.lastName = '';
-    }
+    constructor(
+        id: number,
+        firstName: String,
+        lastName: String
+      ) {}
+
 }
