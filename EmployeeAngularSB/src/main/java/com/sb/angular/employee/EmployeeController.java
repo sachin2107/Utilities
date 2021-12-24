@@ -3,6 +3,8 @@ package com.sb.angular.employee;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +31,14 @@ public class EmployeeController {
 		return emps;
 	}
 	
+//	@GetMapping(value = {"/","/employees"})
+//	public List<Employee> getEmployees(){
+//		return employees;
+//	}
+	
 	@GetMapping(value = {"/","/employees"})
-	public List<Employee> getEmployees(){
-		return employees;
+	public ResponseEntity<List<Employee>> getEmployees(){
+		return new ResponseEntity<>(employees, HttpStatus.OK);
 	}
 	
 	@GetMapping("/employee/{id}")
@@ -51,17 +58,32 @@ public class EmployeeController {
 		return employee;
 	}
 	
+//	@DeleteMapping("/employee/{id}")
+//	public Employee deleteEmployee(@PathVariable("id")long id) {
+//		System.out.println("Inside delete employee...");
+//		Employee employee = new Employee();
+//		for(Employee e:employees) {
+//			if(e.getId() == id) {
+//				employee = e;
+//			}
+//		}
+//		employees.remove(employee);
+//		return employee;
+//	}
+	
 	@DeleteMapping("/employee/{id}")
-	public Employee deleteEmployee(@PathVariable("id")long id) {
+	public ResponseEntity<Employee> deleteEmployee(@PathVariable("id")long id) {
 		System.out.println("Inside delete employee...");
+		ResponseEntity<Employee> responseEntity = new ResponseEntity<>(new Employee(1,"","",1), HttpStatus.NOT_FOUND);
 		Employee employee = new Employee();
 		for(Employee e:employees) {
 			if(e.getId() == id) {
 				employee = e;
+				responseEntity = new ResponseEntity<>(employee, HttpStatus.FOUND);
 			}
 		}
 		employees.remove(employee);
-		return employee;
+		return responseEntity;
 	}
 
 	@PutMapping("/employee/{id}")
@@ -77,4 +99,5 @@ public class EmployeeController {
 		}
 		return employee;
 	}
+	
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule  } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders  } from '@angular/common/http';
 import { first, Observable } from 'rxjs';
 import { Employee } from './employee';
 
@@ -15,7 +15,10 @@ export class EmployeeService {
   }
 
   deleteEmployee(id:number): Observable<any> {
-    return this.httpClient.delete(`http://localhost:8080/api/employee/${id}`)
+    return this.httpClient.delete(`http://localhost:8080/api/employee/${id}`,
+                                                  {headers:new HttpHeaders({
+                                                    'Content-Type':'application/json'
+                                                  })});
   }
 
   updateEmployee(id: number, value: any): Observable<Object> {  

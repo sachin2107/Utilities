@@ -1,5 +1,7 @@
 package com.sb.angular.employee.model;
 
+import java.util.Objects;
+
 public class Employee {
 
 	private long id;
@@ -54,4 +56,28 @@ public class Employee {
 		this.age = age;
 	}
 
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", designation=" + designation + ", age=" + age + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, designation, id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return age == other.age && Objects.equals(designation, other.designation) && id == other.id
+				&& Objects.equals(name, other.name);
+	}
+
+	
 }
