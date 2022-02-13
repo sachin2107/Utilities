@@ -1,0 +1,16 @@
+Command prompt ###username###
+###password###
+===================================================
+command for go to D drive -> D:
+command to check folders present in D drive -> dir
+command to go into folder -> cd folder_name
+command to go into one folder back -> cd ..
+command to clear screen -> cls
+command to close command prompt -> exit
+================================================
+convert java file into class file
+1. open cmd
+2. go into respective folder U -> cd command
+3. convert java file to class file using javac command
+4. move class file into respective bin folder
+5. run   in eclipse
